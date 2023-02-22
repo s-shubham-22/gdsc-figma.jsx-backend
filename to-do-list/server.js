@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
+const { TaskRouter } = require('./routes')
 
 dotenv.config({ path: './env/.env' })
 
@@ -15,6 +16,8 @@ app.use(express.urlencoded({ extended: true }))
 app.get('/', (req, res) => {
     res.send('Home Page!')
 })
+
+app.use('/task', TaskRouter)
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}!`)
